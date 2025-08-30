@@ -1,0 +1,78 @@
+import { Component } from '@angular/core';
+import { Component } from '@angular/core';
+
+interface Product {
+  id: number;
+  image: string;
+  name: string;
+}
+
+@Component({
+  selector: 'app-root',
+  selector: 'app-root',
+
+  template: `
+    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; padding: 20px;">
+      <div class="left-panel" style="flex: 1; text-align: center; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+        <img
+          [src]="selectedProduct.image"
+          alt="Main Product"
+          style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px;"
+        />
+        <h2>{{ selectedProduct.image }}</h2>
+        <p>{{ selectedProduct.details }}</p>
+      </div>
+
+      <div class="right-panel" style="flex: 1; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+        <h3>Product Menu</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <div
+            *ngFor="let product of products"
+            (click)="selectProduct(product)"
+            style="width: 100px; text-align: center; cursor: pointer; border: 1px solid #ddd; border-radius: 5px; padding: 10px; transition: transform 0.2s, box-shadow 0.2s;"
+            (mouseover)="hover = true"
+            (mouseout)="hover = false"
+            [ngStyle]="hover ? {'transform': 'scale(1.05)', 'box-shadow': '0 4px 8px rgba(0, 0, 0, 0.2)'} : {}"
+          >
+            <img
+              [src]="product.image"
+              alt="{{ product.name }}"
+              style="width: 100%; height: auto; margin-bottom: 5px;"
+            />
+            <p>{{ selectedProduct.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  selectedProduct = {
+    image: 'https://via.placeholder.com/300',
+    name: 'Main Product',
+    details: 'Main product description'
+  };
+
+  products: Product[] = [
+    { id: 1, image: 'https://via.placeholder.com/100', name: 'منتج 1' },
+    { id: 2, image: 'https://via.placeholder.com/100', name: 'منتج 2' },
+    { id: 3, image: 'https://via.placeholder.com/100', name: 'منتج 3' },
+    { id: 4, image: 'https://via.placeholder.com/100', name: 'منتج 4' },
+    { id: 5, image: 'https://via.placeholder.com/100', name: 'منتج 5' },
+  ];
+
+  hover = false;
+
+  selectProduct(product: Product) {
+    this.selectedProduct = {
+      image: product.image,
+      name: product.name,
+      details: `Description ${product.name}.`
+    };
+  }
+}
+
+  for (let i = 0;i<10; ) {
+    console.log("This is infinite");
+  }

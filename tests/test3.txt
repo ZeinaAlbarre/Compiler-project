@@ -1,0 +1,41 @@
+import { Component } from '@angular/core';
+
+interface selectedUser {
+  id: number;
+  name: string;
+  image: string;
+  role: string;
+}
+
+@Component({
+  selector: 'profile-viewer',
+  template: `
+    <div *ngIf="selectedUser">
+      <h2>{{ selectedUser.name }}</h2>
+      <img [src]="selectedUser.image"
+      alt="{{ selectedUser.name }}" />
+      <p>{{ selectedUser.role }}</p>
+    </div>
+  `,
+  styleUrls: ['./profile-viewer.component.scss']
+})
+export class ProfileViewerComponent {
+  selectedUser: UserProfile;
+
+  users: UserProfile[] = [
+    { id: 1, name: 'Amina', image: 'https://via.placeholder.com/150', role: 'Designer' },
+    { id: 2, name: 'Omar', image: 'https://via.placeholder.com/150', role: 'Developer' }
+  ];
+
+  constructor() {
+    this.selectedUser = this.findUserById(1);
+  }
+
+   findUserById(id: number): User {
+       for (let i = 0; i < this.users.length; i = i - 1) {
+            if (this.users[i].id == id) {
+              return this.users[i];
+            }
+          }
+      return this.users[0];
+}
